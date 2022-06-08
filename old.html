@@ -18,19 +18,19 @@
     <link href="style.css" rel="stylesheet">
     <title>Breathing Coral Reefs</title>
 
-    <!-- D3 Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 
 </head>
 
 
 <body>
-
-
-    <div id="tooltip" class="hidden">
-        <p id="value">Mauna Loa</p>
-    </div>
-
     <div class="coral">
         <div class="col-md-12">
             <h1>Breathing Coral Reefs</h1>
@@ -52,19 +52,18 @@
                     that can be observed in shallow coral reef environments. This data
                     interactive presents measurements of dissolved inorganic carbon (DIC)
                     and oxygen concentrations in the water column directly above healthy
-                    coral reefs. DIC represents dissolved carbon dioxide (which then dissociates
-                    into bicarbonate and carbonate ions). While DIC concentrations are largely
-                controlled by photosynthesis and respiration, calcification and dissolution
-            can also influence DIC concentrations to a lesser extent (based on total alkalinity measurements). </p>
+                    coral reefs. </p>
 
                 <p>The graph below shows variability over several day-night cycles
                     (20 -25 September 2012) in DIC and oxygen concentrations above
                     a shallow coral reef in Palmyra Atoll (<a
                         href="https://link.springer.com/article/10.1007%2Fs00338-014-1217-3" target="_blank">Koweek et
-                        al., 2015</a>).  Grey shading shows sundown to sunrise.
-                    
+                        al., 2015</a>).
                     What are the predominant trends in the data? What is the relationship
-                    between DIC and oxygen concentrations?</p></div>
+                    between DIC and oxygen concentrations? Based on total alkalinity
+                    measurements, calcification and dissolution will also influence DIC
+                    concentrations to a lesser extent. Grey shading shows sundown to sunrise.</p>
+            </div>
 
 
             <!-- Interactive Graph Palmyra-->
@@ -96,7 +95,7 @@
 
 
             <div class="col-md-12">
-                <p>The graph below shows variability in oxygen concentrations
+                <p>The graph below shows the variability in oxygen concentrations
                     (14-20 November 2011) over a shallow coral reef in Ofu, American
                     Samoa (<a href="https://link.springer.com/article/10.1007/s00338-015-1308-9" target="_blank">Koweek
                         et al., 2015</a>). In addition to photosynthesis and
@@ -131,102 +130,37 @@
                 </div>
             </div> <!-- close interactive -->
 
+            <!--Leaflet map Palmyra-->
             <div class="col-md-12">
-                <p>The globe below shows the locations of Palmyra Atoll and Ofu Island (American Samoa).
-                </p>
+                <p>The location of water sampling in Palmyra
+                    is shown below. Zoom in to see closer details of the reef. Zoom out 
+                    to see where Palymra is located in relation to the rest of the world. </p>
             </div>
 
-            <!-- Interactive Station Globe -->
+         
+            <div class="row">
+                <div class="col-md-1"></div>
 
-            <div class="interactive">
-                <div class="row" style="background-color: white;">
-                    <div class="col-md-1"></div>
-
-                    <div class="col-md-2">
-
-                        <div id="menu">
-                            <div class="slider item">
-                                <div class="label">Change Tilt</div>
-                                <div><input type="range" orient="vertical" name="rotatePhi" min="-90" max="90"
-                                        value="0">
-                                </div>
-                            </div>
-
-                            <div class="slider item">
-                                <div class="label">Spin Globe</div>
-                                <div><input type="range" name="rotateLambda" min="10" max="310" value="160">
-                                </div>
-                            </div>
-
-                            <div class="slider item">
-                                <div class="label">Zoom</div>
-                                <div> <input type="range" name="scale" min="30" max="1000" value="230">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-9">
-                        <svg width="500px" height="500px">
-                            <g class="graticule">
-                                <path></path>
-                            </g>
-                            <g class="map"></g>
-                            <g class="circles"></g>
-                        </svg>
-                        <p style="color:gray"> Hover over the marker for the island name.
-                        </p>
-                    </div>
+                <div class="col-md-10">
+                    <div id="palmyraMap"></div>
+                    <p style="color: grey">Click on the marker for the island name.</p>
                 </div>
             </div>
-            <!--closing interactive station -->
 
+            <!--Leaflet map Ofu -->
             <div class="col-md-12">
-                <h2>Images<h2>
+                <p>Similarly, the location of water sampling in American Samoa
+                    is shown below. </p>
             </div>
 
             <div class="row">
-        
-                <div class="col-md-6" style="padding-left: 0px">
-                    <img img class="figure" src="images/palmyra1.jpg" alt="Palmyra from air">
-                    <p>Palmyra from above with shallow coral reefs.</p>
-                </div>
+                <div class="col-md-1"></div>
 
-                <div class="col-md-6" style="padding-right: 0px">
-                    <img img class="figure" src="images/ofu1.jpg" alt="Ofu from above">
-                    <p>Ofu from above with shallow coral reefs.</p>
+                <div class="col-md-10">
+                    <div id="ofuMap"></div>
+                    <p style="color: grey">Click the marker for the island name.</p>
                 </div>
             </div>
-
-            <div class="row">
-              
-                <div class="col-md-6" style="padding-left: 0px">
-                    <img img class="figure" src="images/palmyra2.jpg" alt="Palmyra coral">
-                    <p>Shallow coral reef in Palmyra.</p>
-                </div>
-
-                <!-- source: https://www.nytimes.com/interactive/2020/04/30/climate/antarctica-ice-climate-change.html -->
-                <div class="col-md-6" style="padding-right: 0px">
-                    <img img class="figure" src="images/ofu2.jpg" alt="Ofu Coral">
-                    <p>Shallow coral reef in Ofu.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- source: https://www.nature.com/articles/d41586-018-07588-3 -->
-                <div class="col-md-6" style="padding-left: 0px">
-                    <img img class="figure" src="images/sampling1.jpg" alt="oxygen sensor">
-                    <p>An oxygen sensor (SeapHOx) measures oxygen concentrations.</p>
-                </div>
-
-
-                <!-- source: https://www.bas.ac.uk/media-post/quest-to-find-oldest-ice-on-earth/ -->
-                <div class="col-md-6" style="padding-right: 0px">
-                    <img img class="figure" src="images/sampling2.png" alt="automatic water sampler">
-                    <p>An automatic water sampler fills glass bottles with ocean water every hour. Samples are then analyzed for DIC concentrations in a laboratory.</p>
-                </div>
-            </div>
-
         </div> <!-- close mysection-->
 
     </div> <!-- close content-->
@@ -236,6 +170,57 @@
 
 <script type="text/javascript">
 
+    // Leaflet map palmyra
+    var mymap = L.map('palmyraMap').setView([5.885, -162.08], 13);// 
+    // add tilelayer from MapBox
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        minZoom: 2,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(mymap);
+
+    //Add each marker as a variable
+    var palmyra = L.marker([5.87, -162.103]).addTo(mymap);
+
+    // add pop-ups
+    palmyra.bindPopup("Palmyra").openPopup();
+
+    // palmyra.on('mouseover', function (e) {
+    //     this.openPopup();
+    // });
+    // palmyra.on('mouseout', function (e) {
+    //     this.closePopup();
+    // });
+
+
+    // Leaflet map Ofu
+    var mymap2 = L.map('ofuMap').setView([-14.175, -169.645], 13);// 5.885, -162.08
+
+    // add tilelayer from MapBox
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        minZoom: 2,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(mymap2);
+
+    //Add each marker as a variable
+    var ofu = L.marker([-14.185, -169.666]).addTo(mymap2);
+
+
+    // add pop-ups
+    ofu.bindPopup("Ofu").openPopup();
+
+
+    // ofu.on('mouseover', function (e) {
+    //     this.openPopup();
+    // });
+    // ofu.on('mouseout', function (e) {
+    //     this.closePopup();
+    // });
 
 
 
@@ -404,135 +389,6 @@
             document.getElementById("label3").style.opacity = "0.2";
         }
     }
-
-
-    // The Interactive Globe (D3)
-    // Data for the globe
-    var geojson;
-    var projection;
-    var geoGenerator = d3.geoPath()
-        .projection(projection);
-
-    var graticule = d3.geoGraticule();
-
-    var state = {
-        type: 'Orthographic',
-        scale: 230,
-        rotateLambda: 160,  // great starting position
-        rotatePhi: 0,
-        translateX: 250,
-        translateY: 250
-    }
-
-    // Marker data:
-    var markers = [
-        "Palmyra",
-        "Ofu",
-    ];
-
-    var circles = [
-        [-162.103, 5.87],
-        [-169.666, -14.185],
-    ];
-
-    var geoCircle = d3.geoCircle().radius(2).precision(1);
-
-    // sets the initial map using data from state.
-    function initMenu() {
-        d3.select('#menu') // sliders
-            .selectAll('.slider.item input') // data input from sliders
-            .on('input', function (d) {
-                var attr = d3.select(this).attr('name'); // selects the name from each slider
-                state[attr] = this.value; //sets the value in the slider
-                update()
-            });
-    }
-
-    // turns each station on and off on the interactive and the map
-    // updates the globe 
-    function update(el, num) {
-        // Update projection
-        projection = d3['geo' + state.type]()
-        geoGenerator.projection(projection);
-
-        projection
-            .scale(state.scale)
-            .rotate([state.rotateLambda, state.rotatePhi])
-            .translate([state.translateX, state.translateY])
-
-        // Update world map
-        var u = d3.select('g.map')
-            .selectAll('path')
-            .data(geojson.features)
-
-
-        u.enter()
-            .append('path')
-            .merge(u)
-            .attr('d', geoGenerator)
-
-        // Update graticule
-        d3.select('.graticule path')
-            .datum(graticule())
-            .attr('d', geoGenerator);
-
-        // Update circles
-        var circleSet = d3.select('.circles')
-            .selectAll('path')
-            .data(circles.map(function (d) {
-                geoCircle.center(d);
-                return geoCircle();
-            }));
-
-        circleSet.enter()
-            .append('path')
-            .merge(circleSet)
-            .attr('d', geoGenerator)
-            .attr("stroke-width", 1)
-            .attr("fill-opacity", .4)
-            .on("mouseover", mouseover)
-            .on("mouseleave", mouseleave)
-    }
-
-    // if mouse is over marker, the location is shown (provided the marker is not transparent)
-    let mouseover = function (d, i) {
-        if (d3.select(this).style("opacity") != 0) {
-            d3.select(this)
-                .attr("fill-opacity", 1);
-
-            //Get this bar's x/y values, then augment for the tooltip
-
-            var xPosition = d3.event.pageX + 10;
-            var yPosition = d3.event.pageY + 10;
-
-            //Update the tooltip position and value
-            d3.select("#tooltip")
-                .style("left", xPosition + "px")
-                .style("top", yPosition + "px")
-                .select("#value")
-                .text(markers[i]);
-
-            //Show the tooltip
-            d3.select("#tooltip").classed("hidden", false);
-
-        }
-    }
-
-    let mouseleave = function (d) {
-        d3.select(this)
-            .attr("fill-opacity", .4);
-        d3.select("#tooltip").classed("hidden", true);
-    }
-
-
-    d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function (err, json) {
-        geojson = json;
-        initMenu();
-        update();
-    })
-
-
-
 
 
 </script>

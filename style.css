@@ -116,6 +116,78 @@ html{
     height: 400px;
 }
 
+/* CSS for the Globes */
+
+/* Makes the tilt slider bar vertical*/
+input[type=range][orient=vertical] {
+    writing-mode: bt-lr;
+    /* IE */
+    -webkit-appearance: slider-vertical;
+    /* WebKit */
+    width: 30px;
+    height: 100px;
+}
+
+/* spaces the slider bars vertically */
+#menu .item {
+    margin-bottom: 10px;
+}
+
+/* Width of the slider bars */
+#menu .item input {
+    width: 100px;
+}
+
+
+/* svg {
+    border: 1px solid #eee;
+} */
+
+.map path {
+    fill: #e5e5e5;
+    stroke: #888;
+}
+
+
+.graticule path {
+    fill: #fff;
+    stroke: #ccc;
+}
+
+.circles path {
+    fill: red;
+    stroke: #69b3a2;
+}
+
+
+#tooltip {
+    position: absolute;
+    z-index: 999999999;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#tooltip.hidden {
+    display: none;
+}
+
+#tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight:bold;
+}
+
 
 /* Leaflet */
 #palmyraMap { height: 500px; width: 100%;}
